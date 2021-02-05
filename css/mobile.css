@@ -1,0 +1,79 @@
+* {
+    font-size: 14px;
+}
+
+.welcoming-window-logos-holder{
+    top: 5%;
+}
+
+.logo-1 {
+    width: 135px;
+}
+
+.logo-2 {
+    width: 135px;
+}
+
+.welcoming-window-text-decor {
+    width: 80px;
+}
+
+.greeting-welcoming-window-text-decor {
+    margin-top: 30px;
+    width: 80px;
+}
+
+.welcoming-window-text-header {
+    font-size: 2.9rem;
+}
+
+.greeting-welcoming-window-text {
+    margin-top: 10px;
+}
+
+.greeting-welcoming-window-text-header {
+    font-size: 1.7rem;
+    line-height: 3rem;
+}
+
+.greeting-welcoming-window-text-footer p {
+    font-size: 1.9rem;
+    margin: 5px;
+}
+
+.greeting-welcoming-window-button-holder {
+    margin-left: 0px
+}
+
+.greeting-welcoming-window-button {
+    cursor: default;
+}
+
+.welcoming-window-text-regular{
+    font-size: 2.2rem;
+    padding: 10px;
+}
+
+.welcoming-window-button{
+    cursor: default;
+}
+
+.poster {
+    margin-top: 20px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.event-card-time {
+    padding: 0 5px;
+    width: 15%;
+}
+
+.event-card-description {
+    padding: 0 5px;
+    width: 55%;
+}
+
+.event-card-place {
+    padding: 0 5px;
+    width: 30%;
+}

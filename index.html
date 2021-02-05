@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Святкова афіша | Луцька міська рада</title>
+    <link rel="icon" type="image/png" href="./img/favicon.png">
+    <!--css-->
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel='stylesheet' media='screen and (max-width: 550px)' href='./css/mobile.css' />
+    <link rel='stylesheet' media='screen and (max-width: 350px)' href='./css/mobile_low.css' />
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <!--scripts-->
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="./js/app.js" defer></script>
+    <script src="./js/script.js" defer></script> 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+</head>
+<body id="app" style="display: none;">
+    <div class="app-container">
+        <div class="welcoming-window">
+            <img src="/img/welcoming_page/02.jpg" alt="" class="welcoming-window-image">
+            <div class="welcoming-window-content-holder">
+                <img class="welcoming-window-content-lesya" src="./img/welcoming_window/lesya.png" alt="">
+                <img class="welcoming-window-content-left-flower-bucket" src="./img/welcoming_window/left_flower_buket.png" alt="">
+                <div class="welcoming-window-content-flowers-container">
+                </div>
+                <div class="welcoming-window-content-quotes-and-logos-container">
+                    <div class="logos-container">
+                        <img src="./img/logo_lutsk.png" alt="" class="logo-1">
+                        <img src="./img/herb_lutsk_lmr.png" alt="" class="logo-2">
+                        <transition name="component-fade" mode="out-in">
+                            <component :is="currentLogosHolder"></component>
+                        </transition>
+                    </div>
+                    <transition name="quote-fade" mode="out-in">
+                        <component :is="currentQuote"></component>
+                    </transition>
+                    <button class="quotes-switching-button" @click = "changeQuote">Цитати</button>
+                </div>
+            </div>
+        </div>
+        <div class="poster-holder d-flex flex-column justify-content-center align-items-center">
+            <button class="btn btn-danger w-100" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Натисніть, щоб відкрити додаткову інформацію
+              </button>
+              <div class="col-12 col-md-8 p-0">
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body mt-3">
+                        <p style="text-align: center;">
+                            <b>Шановні лучани та жителі Луцької міської територіальної громади!</b>
+                        </p>
+    
+                        <p style="text-align: center;">
+                            <b>Міська рада закликає!</b>
+                        </p >
+                        <p style="text-align: justify;">
+                            Під час відвідування святкових заходів дотримуйтесь протиепідемічних вимог, зберігайте соціальну дистанцію та використовуйте засоби індивідуального захисту.
+                        </p>
+                        
+                        <p style="text-align: center;">
+                            <b>
+                                Будьте пильними!
+                            </b>
+                        </p>
+    
+                         Бережіть своє здоров’я та оточуючих. 
+                         <br>
+                         <br>
+                        <p style="text-align: justify;">
+                            УВАГА! В програмі святкових заходів можливі зміни. Слідкуйте за повідомленнями на офіційному сайті Луцької міської ради <a href="www.lutskrada.gov.ua">www.lutskrada.gov.ua</a>, на fb-сторінці Луцької міської ради @lutskrada та fb-сторінці Організаційного відділу Луцької міської ради @org.lutskrada. 
+                        </p>
+                        
+                        
+                        <br>
+                        <p >
+                            <em>Дякуємо!</em> 
+                        </p>
+    
+                    </div>
+                  </div> 
+              </div>
+
+            <div class="poster d-flex flex-column col-12 col-md-8">
+                <div>
+                    <h3 class="poster-headers">
+                        Події на сьогодні:
+                    </h3>
+                    <div v-for="todayEvent in todayEvents" :key="todayEvent.day">
+                        <h4 class="event-day">
+                            {{todayEvent.day}}
+                        </h4>
+                        <div class="event-card" v-for="event in todayEvent.events" :key="event.time">
+                            <div class="event-card-time">
+                                {{event.time}}
+                            </div>
+                            <div class="event-card-description">
+                                {{event.description}}
+                            </div>
+                            <div class="event-card-place">
+                                {{event.place}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="width: 50%;" class="mt-5">
+                <div>
+                    <h3 class="poster-headers">
+                        Загальний список подій:
+                    </h3>
+                    <div>
+                        <div v-for="event in events" :key="event.day">
+                            <h4 class="event-day">
+                                {{event.day}}
+                            </h4>
+                            <div class="event-card" v-for="littleEvent in event.events" :key="littleEvent.time">
+                                <div class="event-card-time">
+                                    {{littleEvent.time}}
+                                </div>
+                                <div class="event-card-description">
+                                    {{littleEvent.description}}
+                                </div>
+                                <div class="event-card-place">
+                                    {{littleEvent.place}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</body>
+</html>

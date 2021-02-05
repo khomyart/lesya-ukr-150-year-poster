@@ -1,0 +1,329 @@
+@font-face {
+    font-family: tilda_script_bold;
+    src: url(../fonts/TildaScriptBold.otf);
+}
+
+* {
+    list-style-type: none;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    /* font-family: tilda_script_bold; */
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.welcoming-window {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    overflow: hidden;
+    background: rgba(1, 4, 12, 0.712);
+}
+
+.welcoming-window-image {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: -1;
+}
+
+.welcoming-window-content-holder {
+    background-color: rgba(240, 220, 130, 0.685);
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+@keyframes slideInFromLeftLesya {
+    0% {
+        left: -50%;
+    }
+
+    100% {
+        left: 20%;
+    }
+}
+
+@keyframes slideInFromLeftFlowerBucket {
+    0% {
+        left: -50%;
+    }
+
+    100% {
+        left: 0%;
+    }
+}
+
+.welcoming-window-content-lesya {
+    position: absolute;
+    top: 100%;
+    height: 80%;
+    left: 20%;
+    width: auto;
+    transform: translate(-50%, -100%);
+    animation: 1.1s ease-out 0s 1 slideInFromLeftLesya;
+    z-index: 7;
+}
+
+.welcoming-window-content-left-flower-bucket {
+    position: absolute;
+    top: 100%;
+    height: 100%;
+    left: 0%;
+    width: auto;
+    transform: translate(0%, -100%);
+    animation: 1s ease-out 0s 1 slideInFromLeftFlowerBucket;
+    z-index: 5;
+}
+
+.welcoming-window-content-flowers-container {
+    height: 100%;
+    width: 100%;
+}
+
+.welcoming-window-animated-flower {
+    margin-left: 0px;
+    transition: margin ease;
+    transition-duration: 3s;
+}
+
+.welcoming-window-content-quotes-and-logos-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: 50%;
+    width: 600px;
+    /* background-color: rgba(0, 255, 255, 0.192); */
+    z-index: 10;
+}
+
+.logos-container {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 10%;
+    display: flex;
+    /* justify-content: space-evenly;  */
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.logo-1 {
+    margin: 0 auto auto;
+    width: 25%;
+    height: fit-content;
+    transition: all 0.5s ease-out;
+}
+
+.logo-2 {
+    margin: 0 auto auto;
+    width: 30%;
+    height: fit-content;
+    transition: all 0.5s ease-out;
+}
+
+.logo-3 {
+    margin: 0 auto auto;
+    font-family: tilda_script_bold;
+    text-align: left;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    min-width: fit-content;
+    height: fit-content;
+}
+
+.quote-container {
+    width: 150%;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: tilda_script_bold;
+}
+
+.quote-container p {
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: tilda_script_bold;
+    width: fit-content;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.quote-container p:first-child::before {
+    content: "\201C";
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    font-size: 6rem;
+    margin-top: 1.5rem;
+    margin-left: -1.6rem;
+    line-height: 1rem;
+}
+
+.quote-container p:last-child::after {
+    content: "\201D";
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    font-size: 6rem;
+    top: 2rem;
+    right: -2rem;
+    line-height: 6rem;
+}
+
+.quotes-switching-button {
+    position: absolute;
+    top: 35%;
+
+}
+
+.poster-holder {
+    min-width: 100vw;
+    background: black;
+    background-image: url('/img/poster-background.png');
+    background-color: rgba(66, 124, 199, 0.877);
+    background-size: 200px;
+}
+
+.poster {
+    background-color: white;
+    margin-bottom: 100px;
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 10px 10px 30px 10px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+
+.poster-headers {
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+.event-holder {
+
+}
+
+.event-day {
+   text-align: center; 
+   margin-top: 25px;
+}
+
+.event-card {
+    margin-top: 10px;
+    display: flex;
+    background-color: rgb(240, 240, 240);
+    transition: all 0.2s ease-out;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.event-card:hover {
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    transform: translate(0, -3%);
+    background-color: rgb(255, 255, 255);
+}
+
+.event-card-time {
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+
+}
+
+.event-card-description {
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    width: 60%;
+    text-align: left;
+}
+
+.event-card-place {
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    width: 30%;
+}
+
+.component-fade-enter-from {
+    opacity: 0;
+    transform: translate(10%, 0px);
+}
+
+.component-fade-enter-active {
+    transition: all 0.5s ease-out;
+}
+
+.component-fade-enter-to {
+    opacity: 1;
+    transform: translate(0);
+}
+
+.component-fade-leave-from {
+    opacity: 1;
+    transform: translate(0);
+}
+
+.component-fade-leave-to {
+    opacity: 0;
+    transform: translate(10%, 0px);
+}
+
+.component-fade-leave-active {
+    transition: all 0.5s ease-in;
+}
+
+/**/
+
+.quote-fade-enter-from {
+    opacity: 0;
+    transform: translate(-45%, 0px);
+}
+
+.quote-fade-enter-active {
+    transition: all 0.5s ease-out;
+}
+
+.quote-fade-enter-to {
+    opacity: 1;
+    transform: translate(-50%, 0px);
+}
+
+.quote-fade-leave-from {
+    opacity: 1;
+    transform: translate(-50%, 0px);
+}
+
+.quote-fade-leave-to {
+    opacity: 0;
+    transform: translate(-45%, 0px);
+}
+
+.quote-fade-leave-active {
+    transition: all 0.5s ease-in;
+}
+
