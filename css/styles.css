@@ -248,7 +248,7 @@ body, html {
     min-width: 100vw;
     background: black;
     background-image: url('/img/poster-background.png');
-    background-color: rgba(66, 124, 199, 0.877);
+    background-color: rgba(66, 124, 199, 0.37);
     background-size: 200px;
 }
 
