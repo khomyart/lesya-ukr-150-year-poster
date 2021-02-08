@@ -8,6 +8,7 @@
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
     /* font-family: tilda_script_bold; */
+    color: rgb(20, 20, 20);
 }
 
 body, html {
@@ -68,7 +69,7 @@ body, html {
 .welcoming-window-content-lesya {
     position: absolute;
     top: 100%;
-    height: 80%;
+    height: 70%;
     left: 20%;
     width: auto;
     transform: translate(-50%, -100%);
@@ -78,13 +79,23 @@ body, html {
 
 .welcoming-window-content-left-flower-bucket {
     position: absolute;
-    top: 100%;
+    top: 0%;
     height: 100%;
-    left: 0%;
+    /* left: 0%; */
     width: auto;
-    transform: translate(0%, -100%);
+    /* transform: translate(0%, -100%); */
     animation: 1s ease-out 0s 1 slideInFromLeftFlowerBucket;
     z-index: 5;
+}
+
+.welcoming-window-content-left-flower-bucket-right {
+    position: absolute;
+    top: 0%;
+    height: 100%;
+    width: auto;
+    z-index: 5;
+    display: none;
+    transform: scale(-1, 1);
 }
 
 .welcoming-window-content-flowers-container {
@@ -93,19 +104,35 @@ body, html {
 }
 
 .welcoming-window-animated-flower {
-    margin-left: 0px;
+    margin-left: -200px;
     transition: margin ease;
     transition-duration: 3s;
 }
 
+@keyframes fadingOutQuotesAndLogosPanel {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 .welcoming-window-content-quotes-and-logos-container {
     position: absolute;
+    opacity: 0;
     top: 0;
     height: 100%;
     left: 50%;
     width: 600px;
     /* background-color: rgba(0, 255, 255, 0.192); */
     z-index: 10;
+}
+
+.welcoming-window-content-quotes-and-logos-container-appearing {
+    opacity: 1;
+    animation: 1s ease-out 0s 1 fadingOutQuotesAndLogosPanel;
 }
 
 .logos-container {
@@ -122,74 +149,99 @@ body, html {
 .logo-1 {
     margin: 0 auto auto;
     width: 25%;
-    height: fit-content;
+    height: auto;
     transition: all 0.5s ease-out;
 }
 
 .logo-2 {
     margin: 0 auto auto;
     width: 30%;
-    height: fit-content;
+    height: auto;
     transition: all 0.5s ease-out;
 }
 
 .logo-3 {
     margin: 0 auto auto;
-    font-family: tilda_script_bold;
-    text-align: left;
-    font-size: 1.2rem;
-    line-height: 1.5rem;
-    min-width: fit-content;
-    height: fit-content;
+    max-width: 29%;
+    min-width: 29%;
+    min-height: auto;
+    transition: all 0.5s ease-out;
 }
 
 .quote-container {
     width: 150%;
     position: absolute;
     left: 50%;
-    top: 40%;
+    top: 41%;
     transform: translate(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.1rem;
     font-family: tilda_script_bold;
+    text-shadow: 1px 0px 6px rgba(221, 221, 221, 0.178);
 }
 
 .quote-container p {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.1rem;
     font-family: tilda_script_bold;
     width: fit-content;
     position: relative;
     margin-bottom: 0;
+    text-shadow: 1px 0px 6px rgba(221, 221, 221, 0.336);
 }
 
-.quote-container p:first-child::before {
-    content: "\201C";
-    font-family: Arial, Helvetica, sans-serif;
+.quotes-counter-and-button-holder {
     position: absolute;
-    font-size: 6rem;
-    margin-top: 1.5rem;
-    margin-left: -1.6rem;
+    top: 32%;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+}
+
+.quotes-counter {
+    font-family: tilda_script_bold;
+    font-size: 2.1rem;
     line-height: 1rem;
-}
-
-.quote-container p:last-child::after {
-    content: "\201D";
-    font-family: Arial, Helvetica, sans-serif;
-    position: absolute;
-    font-size: 6rem;
-    top: 2rem;
-    right: -2rem;
-    line-height: 6rem;
+    margin-top: -9px;
+    margin-right: 20px;
+    text-shadow: 1px 0px 6px rgba(221, 221, 221, 0.178);
 }
 
 .quotes-switching-button {
-    position: absolute;
-    top: 35%;
+    background-color: none;
+    outline: none;
+    font-size: 2.2rem;
+    border: 2px solid rgba(0, 0, 0, 0.815);
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 50px;
+    height: 50px;
+    transition: all 0.2s ease-in-out;
+    user-select: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    background-color: rgba(247, 247, 247, 0.267);
+    margin-right: 10px;
+}
 
+/* .quotes-switching-button:hover {
+    transform: scale(0.9);
+    -webkit-box-shadow: -1px 0px 31px -1px rgba(255, 255, 255, 0.897);
+    -moz-box-shadow: -1px 0px 31px -1px rgba(255, 255, 255, 0.897);
+    box-shadow: -1px 0px 31px -1px rgba(255, 255, 255, 0.897);
+} */
+
+.quotes-switching-button:active {
+    transform: scale(0.9);
 }
 
 .poster-holder {

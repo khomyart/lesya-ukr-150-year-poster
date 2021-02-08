@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="./img/favicon.png">
     <!--css-->
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel='stylesheet' media='screen and (max-width: 1300px)' href='./css/medium_sized_devices.css' />
     <link rel='stylesheet' media='screen and (max-width: 550px)' href='./css/mobile.css' />
     <link rel='stylesheet' media='screen and (max-width: 350px)' href='./css/mobile_low.css' />
     <!--fonts-->
@@ -30,6 +31,7 @@
             <div class="welcoming-window-content-holder">
                 <img class="welcoming-window-content-lesya" src="./img/welcoming_window/lesya.png" alt="">
                 <img class="welcoming-window-content-left-flower-bucket" src="./img/welcoming_window/left_flower_buket.png" alt="">
+                <img class="welcoming-window-content-left-flower-bucket-right" src="./img/welcoming_window/left_flower_buket.png" alt="">
                 <div class="welcoming-window-content-flowers-container">
                 </div>
                 <div class="welcoming-window-content-quotes-and-logos-container">
@@ -43,7 +45,13 @@
                     <transition name="quote-fade" mode="out-in">
                         <component :is="currentQuote"></component>
                     </transition>
-                    <button class="quotes-switching-button" @click = "changeQuote">Цитати</button>
+                    <div class="quotes-counter-and-button-holder">
+                        <transition name="component-fade" mode="out-in">
+                            <div v-if="currentQuoteIndex != 0" class="quotes-counter">{{quoteCounter}}</div>
+                        </transition>
+                        <div class="quotes-switching-button" @click = "changeQuote"><img style="width: 100%; height: auto;" src="./img/icons/left-quote.png" alt=""></div>
+                        <div id="musicButton" class="quotes-switching-button" @click = "playMainTheme">&#9834;</div>
+                    </div> 
                 </div>
             </div>
         </div>

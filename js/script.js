@@ -27,7 +27,9 @@ window.onload = () => {
 
     let i = 1;
 
-    //changing image on main page
+    /*
+        changing image on main page, depends on config array
+    */
     setInterval(()=>{
         if (i >= config.images.length) i = 0;
         let previousImage = document.getElementsByClassName('welcoming-window-image')[0];
@@ -53,7 +55,7 @@ window.onload = () => {
 
     }, config.imageChangingTime);
 
-    //throwing a flowers from flowersArray
+    
     let flowersArray        = [
         './img/welcoming_window/flowers/blue.png',
         './img/welcoming_window/flowers/white.png',
@@ -61,7 +63,8 @@ window.onload = () => {
     ],
     flowerTemplate          = document.createElement('img');
     flowersContainer        = document.querySelector('.welcoming-window-content-flowers-container'),
-    maxFlowers              = 20,
+    maxFlowers              = window.innerWidth <= 700 ? 25 : 
+                              window.innerWidth > 700 && window.innerWidth <= 1100 ? 30 : 40,
     flowersCounter          = 0,
     initialFlowerPosition   = -10; //%
 
@@ -69,31 +72,13 @@ window.onload = () => {
         let randomFlowerIndex = Math.floor(Math.random() * Math.floor(flowersArray.length));
         return flowersArray[randomFlowerIndex];
     }
-//TODO: Make moving not by % but by pixels
+
+    //TODO: Make moving not by % but by pixels
+
+    /*
+        throwing a flowers from flowersArray
+    */
     function throwAFlower(flowerCounter, maxFlowers) {
-        // let currentFlowerPosition;
-        // let flowerMovingStepValue = 0.5;
-        
-        // let flower = flowerTemplate.cloneNode();
-        // flower.src = returnRandomFlowerSrc(flowersArray);
-        // flower.style.position = "absolute";
-        // flower.style.zIndex = 3;
-        // flowersContainer.appendChild(flower);
-    
-        // currentFlowerPosition = initialFlowerPosition;
-        // flower.style.left = `${initialFlowerPosition}%`;
-        // flower.style.top = `${(Math.floor(Math.random() * 100))}%`;
-    
-        // let flowerThrowingInterval = setInterval(()=>{
-        //     currentFlowerPosition += flowerMovingStepValue;
-        //     flower.style.left = `${currentFlowerPosition}%`
-    
-        //     if (currentFlowerPosition > 100) {
-        //     // if (currentFlowerPosition > (Math.floor(Math.random() * 100) + 100)) {
-        //         clearInterval(flowerThrowingInterval);
-        //         flower.remove();
-        //     }
-        // }, 30);
         let flower = flowerTemplate.cloneNode();
         flower.src = returnRandomFlowerSrc(flowersArray);
         flower.style.position = "absolute";
@@ -101,10 +86,6 @@ window.onload = () => {
         flowersContainer.appendChild(flower);
         flower.style.top = `${(Math.floor(Math.random() * 100))}%`;
         flower.classList.add('welcoming-window-animated-flower');
-
-        // setTimeout(()=>{
-        //     flower.style.marginLeft = `${100}%`;
-        // },50)
 
         setTimeout(()=>{
             flower.style.marginLeft = `${(Math.floor(Math.random() * 150/maxFlowers) + (150 - (150/maxFlowers*(flowerCounter+1))))}%`;
@@ -117,46 +98,45 @@ window.onload = () => {
             flowersCounter += 1;
             if (flowersCounter > maxFlowers) {
                 let flowersList = document.querySelectorAll('.welcoming-window-animated-flower');
-                // flowersList.forEach(flower => {
-                //     flower.style.transitionDuration = `20s`;
-                // });
-                
                 clearInterval(flowerThrower);
             }
         }, 40)
     },500)
 
-    let coputedStylesOfLogos = [];
-    let logos = [];
-    logos.push(document.querySelector('.logo-1'))
-    logos.push(document.querySelector('.logo-2'))
-    coputedStylesOfLogos.push(getComputedStyle(logos[0]))
-    coputedStylesOfLogos.push(getComputedStyle(logos[1]))
+    /* 1100, 970
+        computing initial margins for logos, to position them properly
+    */
+    function computeMarginsForLogosElements() {
+        let coputedStylesOfLogos = [];
+        let logos = [];
+        logos.push(document.querySelector('.logo-1'))
+        logos.push(document.querySelector('.logo-2'))
+        coputedStylesOfLogos.push(getComputedStyle(logos[0]))
+        coputedStylesOfLogos.push(getComputedStyle(logos[1]))
 
-    let amountOfLogos = 2;
-    let logosContainerWidth = logos[0].parentNode.offsetWidth;
-    let widthOfAllAvailableLogos = logos[0].offsetWidth + logos[1].offsetWidth;
+        let amountOfLogos = 2;
+        let logosContainerWidth = logos[0].parentNode.offsetWidth;
+        let widthOfAllAvailableLogos = logos[0].offsetWidth + logos[1].offsetWidth;
 
-    let allAvailableMargin = (logosContainerWidth - widthOfAllAvailableLogos);
-    let leftAndRightAutoMargins = allAvailableMargin / (2 * amountOfLogos);
-    console.log(leftAndRightAutoMargins)
-    logos[0].style.marginLeft = `${leftAndRightAutoMargins*1.30}px`
-    logos[0].style.marginRight = `${leftAndRightAutoMargins*0.7}px`
-    logos[1].style.marginLeft = `${leftAndRightAutoMargins*0.7}px`
-    logos[1].style.marginRight = `${leftAndRightAutoMargins*1.30}px`
+        let allAvailableMargin = (logosContainerWidth - widthOfAllAvailableLogos);
+        let leftAndRightAutoMargins = allAvailableMargin / (2 * amountOfLogos);
+        logos[0].style.marginLeft = `${leftAndRightAutoMargins*1.30}px`
+        logos[0].style.marginRight = `${leftAndRightAutoMargins*0.7}px`
+        logos[1].style.marginLeft = `${leftAndRightAutoMargins*0.7}px`
+        logos[1].style.marginRight = `${leftAndRightAutoMargins*1.30}px`
+    }
 
-    // setTimeout(()=>{
-    //     let amountOfLogos = 2;
-    //     let logosContainerWidth = logos[0].parentNode.offsetWidth;
-    //     let widthOfAllAvailableLogos = logos[0].offsetWidth + logos[1].offsetWidth;
+    computeMarginsForLogosElements();
 
-    //     let allAvailableMargin = (logosContainerWidth - widthOfAllAvailableLogos);
-    //     let leftAndRightAutoMargins = allAvailableMargin / (2 * amountOfLogos);
-    //     console.log(leftAndRightAutoMargins)
-    //     // logos[0].style.marginLeft = `${20}px`
-    //     // logos[0].style.marginRight = `${20}px`
-    //     // logos[1].style.marginLeft = `${20}px`
-    //     // logos[1].style.marginRight = `${20}px`
-    // },1000)
+    /*
+        control appearing process of quotes and logos container        
+    */
+    function logosAndQuotesContainerAppearance() {
+        let container = document.querySelector('.welcoming-window-content-quotes-and-logos-container');
+        setTimeout(()=>{
+            container.classList.add('welcoming-window-content-quotes-and-logos-container-appearing')
+        }, 2000)
+    }
 
+    logosAndQuotesContainerAppearance();
 }

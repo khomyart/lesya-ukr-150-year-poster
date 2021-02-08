@@ -911,7 +911,9 @@ false
             currentLogosHolderIndex: 0,
             currentQuoteIndex: 0,
             logosList: ['2-logos', '3-logos'],
-            quotesList: ['quote-0', 'quote-1', 'quote-2'],
+            quotesList: ['quote-0', 'quote-1', 'quote-2', 'quote-3', 'quote-4', 'quote-5'],
+            isMusicPlaying: false,
+            audioInstance: {},
         }
     },
     computed: {
@@ -920,6 +922,9 @@ false
         },
         currentQuote: function() {
             return this.quotesList[this.currentQuoteIndex];
+        },
+        quoteCounter: function() {
+            return `${this.currentQuoteIndex}/${this.quotesList.length-1}`
         }
     },
     watch: {
@@ -933,9 +938,34 @@ false
         }
     },
     methods: {
+        playMainTheme() {
+            let musicButton = document.querySelector('#musicButton');
+            let app = this;
+            if (!this.isMusicPlaying) {
+                musicButton.innerHTML = '<img src="/img/icons/muted.png" style="width: 100%; height: auto;">';
+                this.isMusicPlaying = !this.isMusicPlaying;
+                this.audioInstance = new Audio('/sfx/music.mp3');
+                this.audioInstance.play();
+                this.audioInstance.loop = false;
+                this.audioInstance.onended = function() {
+                    musicButton.innerHTML = '&#9834;';
+                    app.isMusicPlaying = false;
+                    console.log(this.isMusicPlaying)
+                }
+            } else {
+                if(this.audioInstance.muted) {
+                    musicButton.innerHTML = '<img src="/img/icons/muted.png" style="width: 100%; height: auto;">';
+                    this.audioInstance.muted = false;
+                } else {
+                    this.audioInstance.muted = true;
+                    musicButton.innerHTML = '&#9834;';
+                }
+            }
+
+        },
         changeQuote() {       
-            // let audio = new Audio('/sfx/bells.mp3');
-            // audio.play();
+            let audio = new Audio('/sfx/harp.mp3');
+            audio.play();
             if (this.currentQuoteIndex < this.quotesList.length - 1) {
                 this.currentQuoteIndex += 1;
                 if (this.isLogosMarginRecalculatedNeeded === true) {
@@ -947,7 +977,8 @@ false
                         let amountOfLogos = 3;
                         let logosContainerWidth = logos[0].parentNode.offsetWidth;
                         //where 144.47 suggested width of third logo
-                        let widthOfAllAvailableLogos = logos[0].offsetWidth + logos[1].offsetWidth + 144.47;
+                        let aproximateWidthOfThirdLogo = window.innerWidth = logosContainerWidth*0.29
+                        let widthOfAllAvailableLogos = logos[0].offsetWidth + logos[1].offsetWidth + aproximateWidthOfThirdLogo;
                         let allAvailableMargin = (logosContainerWidth - widthOfAllAvailableLogos);
                         let leftAndRightAutoMargins = allAvailableMargin / (2 * amountOfLogos);
                         logos[0].style.marginLeft = `${leftAndRightAutoMargins}px`
@@ -1010,11 +1041,7 @@ false
 app.component('3-logos', {
     template: `
             <div class="logo-3">
-                150 років від
-                <br>
-                дня народження
-                <br>
-                Лесі Українки
+                <img src="./img/150-years-from-birthday.png" style="width: 100%; height:auto;">
             </div>
     `,
 })
@@ -1042,7 +1069,7 @@ app.component('quote-1', {
     template: `
         <div class="quote-container">
             <p>
-                Так! Я буду крізь сльози сміятись,
+            &#8220;Так! Я буду крізь сльози сміятись,
             </p>
             <p>
                 Серед лиха співати пісні,
@@ -1051,7 +1078,7 @@ app.component('quote-1', {
                 Без надії таки сподіватись, 
             </p>
             <p> 
-                Буду жити! Геть думи сумні!
+                Буду жити! Геть думи сумні!&#8221;
             </p>                        
         </div>
     `,
@@ -1061,7 +1088,7 @@ app.component('quote-2', {
     template: `
         <div class="quote-container">
             <p>
-                Я на гору круту крем'яную
+            &#8220;Я на гору круту крем'яную
             </p>
             <p>
                 Буду камінь важкий підіймать
@@ -1070,8 +1097,59 @@ app.component('quote-2', {
                 І, несучи вагу ту страшную
             </p>
             <p> 
-                Буду пісню веселу співать.
+                Буду пісню веселу співать.&#8221;
             </p>                        
+        </div>
+    `,
+})
+
+app.component('quote-3', {
+    template: `
+        <div class="quote-container">
+            <p>
+            &#8220;Кругом садочки, біленькі хати,
+            </p>
+            <p>
+                І соловейка в гаю чувати.
+            </p>
+            <p>
+                Ой, чи так красно в якій країні,
+            </p>
+            <p> 
+                Як тут, на нашій рідній Волині.&#8221;
+            </p>                        
+        </div>
+    `,
+})
+
+app.component('quote-4', {
+    template: `
+        <div class="quote-container">
+            <p>
+            &#8220;Ні! Я жива!
+            </p>
+            <p>
+                Я буду вічно жити!
+            </p>
+            <p>
+                Я в серці маю те,
+            </p>
+            <p> 
+                що не вмирає.&#8221;
+            </p>                        
+        </div>
+    `,
+})
+
+app.component('quote-5', {
+    template: `
+        <div class="quote-container">
+            <p>
+            &#8220;Слово - то мудрості промінь,
+            </p>
+            <p>
+                слово - то думка людська...&#8221;
+            </p>                     
         </div>
     `,
 })
