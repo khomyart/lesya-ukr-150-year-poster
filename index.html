@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <!--scripts-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" defer></script>
     <script src="https://unpkg.com/vue@next" defer></script>
     <script src="./js/app.js" defer></script>
     <script src="./js/script.js" defer></script> 
@@ -50,7 +51,10 @@
                             <div v-if="currentQuoteIndex != 0" class="quotes-counter">{{quoteCounter}}</div>
                         </transition>
                         <div class="quotes-switching-button" @click = "changeQuote"><img style="width: 100%; height: auto;" src="./img/icons/left-quote.png" alt=""></div>
-                        <div id="musicButton" class="quotes-switching-button" @click = "playMainTheme">&#9834;</div>
+                        <div id="musicButton" class="quotes-switching-button" @click = "playMainTheme">
+                            <img style="width: 100%; height: auto;" src="./img/icons/speaker.svg" alt="">
+                            <!-- &#9834; -->
+                        </div>
                     </div> 
                 </div>
             </div>
@@ -101,13 +105,26 @@
                     <h3 class="poster-headers">
                         Події на сьогодні:
                     </h3>
-                    <div v-for="todayEvent in todayEvents" :key="todayEvent.day">
+                    <div v-for="todayEvent in todayEvents" :key="todayEvent.date_begining">
                         <h4 class="event-day">
-                            {{todayEvent.day}}
+                            {{ transformDataToComfortableForm(todayEvent.date_begining) }} 
+                            <span v-if="todayEvent.date_end != null"> 
+                                - {{ transformDataToComfortableForm(todayEvent.date_end) }}
+                            </span>
                         </h4>
-                        <div class="event-card" v-for="event in todayEvent.events" :key="event.time">
+                        <div 
+                        :class="[classes.defaultEventCard, event.href ? classes.eventCardWithHref : '']" 
+                        v-for="event in todayEvent.events" 
+                        :key="event.id"
+                        @click="goToLink(event.href)"
+                        >
                             <div class="event-card-time">
-                                {{event.time}}
+                                <span v-if="event.time_begining != null"> 
+                                    {{ transformTimeToComfortableForm(event.time_begining) }} 
+                                </span>
+                                <span v-if="event.time_end != null"> 
+                                    &nbsp- {{ transformTimeToComfortableForm(event.time_end) }}
+                                </span>
                             </div>
                             <div class="event-card-description">
                                 {{event.description}}
@@ -124,19 +141,31 @@
                         Загальний список подій:
                     </h3>
                     <div>
-                        <div v-for="event in events" :key="event.day">
+                        <div v-for="event in events" :key="event.date_begining">
                             <h4 class="event-day">
-                                {{event.day}}
+                                {{ transformDataToComfortableForm(event.date_begining) }} 
+                                <span v-if="event.date_end != null"> 
+                                    - {{ transformDataToComfortableForm(event.date_end) }}
+                                </span>
                             </h4>
-                            <div class="event-card" v-for="littleEvent in event.events" :key="littleEvent.time">
+                            <div 
+                            :class="[classes.defaultEventCard, littleEvent.href ? classes.eventCardWithHref : '']" 
+                            v-for="littleEvent in event.events" 
+                            :key="littleEvent.id"
+                            @click="goToLink(littleEvent.href)">
                                 <div class="event-card-time">
-                                    {{littleEvent.time}}
+                                    <span v-if="littleEvent.time_begining != null"> 
+                                        {{ transformTimeToComfortableForm(littleEvent.time_begining) }} 
+                                    </span>
+                                    <span v-if="littleEvent.time_end != null"> 
+                                        &nbsp- {{ transformTimeToComfortableForm(littleEvent.time_end) }}
+                                    </span>
                                 </div>
                                 <div class="event-card-description">
-                                    {{littleEvent.description}}
+                                    {{ littleEvent.description }}
                                 </div>
                                 <div class="event-card-place">
-                                    {{littleEvent.place}}
+                                    {{ littleEvent.place }}
                                 </div>
                             </div>
                         </div>

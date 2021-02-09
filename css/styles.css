@@ -248,7 +248,7 @@ body, html {
     min-width: 100vw;
     background: black;
     background-image: url('/img/poster-background.png');
-    background-color: rgba(66, 124, 199, 0.37);
+    background-color: rgba(66, 124, 199, 0.404);
     background-size: 200px;
 }
 
@@ -279,6 +279,11 @@ body, html {
    margin-top: 25px;
 }
 
+.event-day > span {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+}
+
 .event-card {
     margin-top: 10px;
     display: flex;
@@ -286,6 +291,11 @@ body, html {
     transition: all 0.2s ease-out;
     padding: 10px;
     border-radius: 5px;
+}
+
+.event-card-with-href {
+    border: 2px solid rgba(36, 182, 36, 0.623);
+    cursor: pointer;
 }
 
 .event-card:hover {
@@ -299,9 +309,10 @@ body, html {
 .event-card-time {
     padding: 0 10px;
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     justify-content: center;
-    width: 10%;
+    width: 20%;
 
 }
 
@@ -309,7 +320,7 @@ body, html {
     padding: 0 10px;
     display: flex;
     align-items: center;
-    width: 60%;
+    width: 55%;
     text-align: left;
 }
 
@@ -318,7 +329,7 @@ body, html {
     display: flex;
     align-items: center;
     text-align: left;
-    width: 30%;
+    width: 25%;
 }
 
 .component-fade-enter-from {
