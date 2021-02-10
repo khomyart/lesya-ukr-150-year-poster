@@ -1,5 +1,6 @@
 window.onload = () => {
     document.body.style.display = 'block';
+    document.querySelector(".loading-placeholder").style.display = 'none';
     const   welcomingWindow = document.getElementsByClassName('welcoming-window')[0];
     const   config = {
                 imageChangingTime: 10000, //ms

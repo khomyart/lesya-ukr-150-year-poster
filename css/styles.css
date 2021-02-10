@@ -11,6 +11,13 @@
     color: rgb(20, 20, 20);
 }
 
+.loading-placeholder {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(224, 203, 110);
+    display: block;
+}
+
 body, html {
     margin: 0;
     padding: 0;
