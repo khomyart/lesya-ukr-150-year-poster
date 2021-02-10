@@ -1,6 +1,7 @@
 @font-face {
     font-family: tilda_script_bold;
     src: url(../fonts/TildaScriptBold.otf);
+    font-weight: bold;
 }
 
 * {
