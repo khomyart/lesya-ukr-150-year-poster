@@ -38,7 +38,11 @@ const app = Vue.createApp({
     },
     methods: {
         goToLink(link) {
-            link != null ? window.open(link) : null;
+            if ( link != null) {
+                let audio = new Audio('/sfx/harp.mp3');
+                audio.play();
+                window.open(link);
+            }
         },
         getEventsList() {
             function combineArraysByDate(arrayNeededToBeSorted) {
