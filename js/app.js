@@ -84,7 +84,6 @@ const app = Vue.createApp({
                 events = data;
                 app.events = combineArraysByDate(events.all);
                 app.todayEvents = combineArraysByDate(events.today);
-                console.log(app.events)
             })
         },
         transformDataToComfortableForm(date, includeYear) {
@@ -130,7 +129,6 @@ const app = Vue.createApp({
                 this.audioInstance.onended = function() {
                     musicButton.innerHTML = '<img style="width: 100%; height: auto;" src="./img/icons/speaker.svg" alt="">';
                     app.isMusicPlaying = false;
-                    console.log(this.isMusicPlaying)
                 }
             } else {
                 if(this.audioInstance.muted) {
@@ -194,7 +192,6 @@ const app = Vue.createApp({
             } else {
                 this.currentLogosHolderIndex = 0;
             }
-            console.log()
         }
     },
     beforeMount(){
